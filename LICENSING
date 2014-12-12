@@ -1,0 +1,39 @@
+The editors believe that this notebook may be used, copied, and modified freely
+for the purposes of ACM competitions; however, please be aware that it
+incorporates material from various sources, which differ in their licensing.
+Some parts are not known to have been released under any license, so tread
+carefully.
+
+In the LaTeX source (codebook.tex) there is a comment after each subsection
+heading indicating the authors of that section. (The notebook itself was
+compiled by Brian Bi.) The following licenses apply:
+
+-> If "Stanford" is listed as an author, the code includes content (possibly
+modified) from Stanford's ACM notebook, which can be found here:
+http://stanford.edu/~liszt90/acm/notebook.html
+There is no license for this code, and the original authorship is unclear, so
+tread with caution.
+
+-> Code by Frank Chu and Igor Naverniouk is released under a permissive license
+(see file Licenses/Igor).
+
+-> Code by Tom Yubing Dong (tomtung) is released under the MIT license (see
+file Licenses/MIT-tomtung).
+
+-> Code by Ilya Grebnov is released under the MIT license (see file
+Licenses/MIT-Gribok).
+
+-> Code by Jimmy Mårdell is released under the MIT license (see file
+Licenses/MIT-Yarin).
+
+-> Brian Bi, Jacob Plachta, Wesley May, Andre Hahn Pereira, and Qiyu Zhu have
+agreed to release their contributions under Unlicense (see file
+Licenses/Unlicense), effectively placing them into the public domain with no
+restrictions on their use. Note that this does not apply to code that was
+originally written by someone else and then translated, modified, and/or
+expanded by one or more of this set of authors. In that case, the original
+copyright and license (or lack thereof) apply.
+
+You are encouraged to Unlicense any further contributions you might make to
+this notebook, whether or not you submit them upstream, in order to promote the
+free exchange of useful ideas and practices.

@@ -1,0 +1,17 @@
+This notebook is intended as reference material for a team participating in the
+ACM-ICPC World Finals or any regional competition that allows up to 25 pages of
+printed reference material. It incorporates code from various sources and is
+based on the notebook used by contestants at the University of Toronto from
+2013 to 2014.
+
+Because this version of the notebook is intended for redistribution, it
+excludes a small amount of proprietary code present in U. of T.'s official team
+notebook.
+
+The philosophy used when compiling this notebook was to include material that
+will be most useful for experienced contestants, in terms of reducing the
+amount of time spent coding and/or debugging. It therefore excludes algorithms
+that serious contestants would be able to code quickly and correctly with a
+minimum of effort, such as Dijkstra's algorithm. Most of the material in this
+notebook is therefore less common, theoretically nontrivial, or tricky to get
+right on the first try.

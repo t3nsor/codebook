@@ -1,0 +1,292 @@
+% Compiled and edited by Brian Bi
+\documentclass[9pt]{extarticle}
+\setlength{\parindent}{0.0in}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage[landscape,letterpaper,twoside=false,top=15mm,bottom=15mm,left=10mm,right=10mm]{geometry}
+\pagestyle{myheadings}
+\markright{}
+\usepackage{listings}
+\usepackage{color}
+\lstset{
+	tabsize=4,
+    basicstyle=\ttfamily\scriptsize,
+    %upquote=true,
+    aboveskip={1.5\baselineskip},
+    columns=fixed,
+    showstringspaces=false,
+    extendedchars=true,
+    breaklines=true,
+    prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=single,
+    rulecolor=\color[rgb]{0.75,0.75,0.75},
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    keywordstyle=\color[rgb]{0,0,1},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{0.627,0.126,0.941},
+}
+
+\begin{document}
+% Disable balancing of columns on last page, which is ugly
+\begin{multicols*}{3}
+% Want compact table of contents, but normal spacing between paragraphs later on
+\setlength{\parskip}{0.0in}
+\tableofcontents
+\setlength{\parskip}{0.1in}
+% New codebook
+\section{Flow and matching}
+
+\subsection{Max flow (Dini\'c)} % Stanford
+\lstinputlisting[language=c++]{dinic.cpp}
+
+\subsection{Min-cost max-flow (successive shortest paths)}
+% Frank Chu and Igor Naverniouk (modified by Brian Bi)
+\lstinputlisting[language=c++]{mcmf4.cpp}
+
+\subsection{Min-cost matching} % Stanford
+\lstinputlisting[language=c++]{bipartite-mincost.cpp}
+
+\subsection{Max bipartite matching} % Stanford
+\lstinputlisting[language=c++]{bipartite.cpp}
+
+\subsection{Global min cut (Stoer--Wagner)} % Stanford
+\lstinputlisting[language=c++]{mincut.cpp}
+
+\subsection{K\"onig's Theorem (Text)} % Jacob Plachta and Brian Bi
+In any bipartite graph, the number of edges in a maximum matching equals the
+number of vertices in a minimum vertex cover. To exhibit the vertex cover:
+\begin{enumerate}
+\item Find a maximum matching
+\item Change each edge \textbf{used} in the matching into a directed edge from
+\textbf{right to left}
+\item Change each edge \textbf{not used} in the matching into a directed edge
+from \textbf{left to right}
+\item Compute the set $T$ of all vertices reachable from unmatched vertices on
+the left (including themselves)
+\item The vertex cover consists of all vertices on the right that are
+\textbf{in} $T$, and all vertices on the left that are \textbf{not in} $T$
+\end{enumerate}
+
+\subsection{General Unweighted Maximum Matching (Edmonds' algorithm)}
+% Ilya Grebnov (modified by Brian Bi)
+\lstinputlisting[language=c++]{general-matching.cpp}
+
+\subsection{Minimum Edge Cover (Text)} % Brian Bi
+If a minimum edge cover contains $C$ edges, and a maximum matching contains $M$
+edges, then $C + M = |V|$. To obtain the edge cover, start with a maximum
+matching, and then, for every vertex not matched, just select some edge
+incident upon it and add it to the edge set. 
+
+\subsection{Stable Marriage Problem (Gale--Shapley algorithm)} % Brian Bi
+\lstinputlisting[language=c++]{stablemp.cpp}
+
+\section{Geometry}
+
+\subsection{Miscellaneous Geometry} % Stanford
+\lstinputlisting[language=c++]{geom-2d.cpp}
+
+\subsection{3D Geometry}
+% Stanford (translated, modified, and expanded by Wesley May and Brian Bi)
+\lstinputlisting[language=c++]{geom-3d.cpp}
+
+\subsection{Convex hull} % Brian Bi
+\lstinputlisting[language=c++]{monotone.cpp}
+
+% TODO: Add faster one
+\subsection{Slow Delaunay triangulation} % Stanford
+\lstinputlisting[language=c++]{delaunay.cpp}
+
+\subsection{Minimum Enclosing Disk (Welzl's Algorithm)} % Brian Bi
+\lstinputlisting[language=c++]{welzl.cpp}
+
+\subsection{Pick's Theorem (Text)} % Wesley May
+For a polygon with all vertices on lattice points, $A = i + b/2 - 1$, where $A$
+is the area, $i$ is the number of lattice points strictly within the polygon,
+and $b$ is the number of lattice points on the boundary of the polygon. (Note,
+there is no generalization to higher dimensions)
+
+\section{Math Algorithms}
+
+\subsection{Sieve of Eratosthenes} % Jimmy Mårdell (Yarin)
+\lstinputlisting[language=c++]{yarin.cpp}
+
+\subsection{Modular arithmetic and linear Diophantine solver} % Stanford
+\lstinputlisting[language=c++]{modular.cpp}
+
+\subsection{Gaussian elimination for square matrices of full rank; finds
+inverses and determinants} % Stanford
+\lstinputlisting[language=c++]{gaussian.cpp}
+
+\subsection{Reduced row echelon form (RREF), matrix rank} % Stanford
+\lstinputlisting[language=c++]{rref.cpp}
+
+\subsection{Solving linear systems (Text)} % Brian Bi
+To solve a general system of linear equations, put it into matrix form and
+compute the reduced row echelon form. For example,
+\begin{align*}2x + y &= 5 \\ 3x + 2y &= 6\end{align*}
+corresponds to the matrix
+\[ \left[ \begin{array}{cc|c} 2 & 1 & 5 \\ 3 & 2 & 6 \end{array} \right] \]
+with RREF
+\[ \left[ \begin{array}{cc|c} 1 & 0 & 4 \\ 0 & 1 & -3 \end{array} \right] \]
+After row reduction, if any row has a 1 in the rightmost column and 0
+everywhere else, then the system is inconsistent and has no solution.
+Otherwise, to find a solution, set the variable corresponding to the leftmost 1
+in each column equal to the corresponding value in the rightmost column, and
+set all other variables to 0. Ignore rows consisting entirely of 0. The
+solution is unique iff the rank of the matrix equals the number of variables.
+
+\subsection{Fast Fourier transform (FFT)} % Stanford
+\lstinputlisting[language=c++]{fft.cpp}
+
+\subsection{Simplex algorithm} % Stanford
+\lstinputlisting[language=c++]{simplex.cpp}
+
+\subsection{Fast factorization (Pollard rho) and primality testing
+(Rabin--Miller)} % Qiyu Zhu
+\lstinputlisting[language=c++]{pollard-rho.cpp}
+
+\subsection{Euler's Totient} % Andre Hahn Pereira
+\lstinputlisting[language=c++]{totient.cpp}
+
+\section{Graphs}
+
+\subsection{Strongly connected components} % Stanford (modified by Brian Bi)
+\lstinputlisting[language=c++]{scc.cpp}
+
+\subsection{Bridges} % Andre Hahn Pereira
+\lstinputlisting[language=c++]{bridges.cpp}
+
+\subsection{Eulerian path} % Andre Hahn Pereira
+\lstinputlisting[language=c++]{eulerian.cpp}
+
+\subsection{Lowest Common Ancestor (Pseudocode)} % Jacob Plachta
+Tarjan's offline algorithm (requires $O(N)$ disjoint set operations).
+\begin{lstlisting}
+function TarjanOLCA(u)
+    MakeSet(u);
+    u.ancestor := u;
+    for each v in u.children do
+        TarjanOLCA(v);
+        Union(u,v);
+        Find(u).ancestor := u;
+    u.colour := black;
+    for each v such that {u,v} in P do
+        if v.colour == black
+            print "Tarjan's Least Common Ancestor of " + u +
+                " and " + v + " is " + Find(v).ancestor + ".";
+\end{lstlisting}
+This function is called on the root of the tree. The set P of pairs of nodes to
+query must be specified in advance. Each node is initially white, and is
+colored black after it and all its children have been visited. The lowest
+common ancestor of the pair {u,v} is available as Find(v).ancestor immediately
+(and only immediately) after u is colored black, provided v is already black.
+Otherwise, it will be available later as Find(u).ancestor, immediately after v
+is colored black.
+
+\section{Data Structures}
+
+\subsection{Suffix arrays} % Stanford
+\lstinputlisting[language=c++]{suffix-array.cpp}
+
+\subsection{Binary Indexed Tree (BIT) / Fenwick Tree} % Brian Bi
+\lstinputlisting[language=c++]{BIT.cpp}
+
+\subsection{BIT with range updates} % Brian Bi
+\lstinputlisting[language=c++]{BIT-range.cpp}
+
+\subsection{Segment Tree with Lazy Propagation} % Brian Bi
+\lstinputlisting[language=c++]{segtree.cpp}
+
+\subsection{Size-Balanced Tree}
+% Tom Yubing Dong (tomtung) (modified by Brian Bi)
+\lstinputlisting[language=c++]{SBT.cpp}
+
+\section{Number Theory Reference}
+\subsection{Polynomial Coefficients (Text)} % Brian Bi
+$(x_1 + x_2 + ... + x_k)^n = \sum_{c_1 + c_2 + ... + c_k = n}
+\frac{n!}{c_1! c_2! ... c_k!} x_1^{c_1} x_2^{c_2} ... x_k^{c_k}$
+
+\subsection{M\"obius Function (Text)} % Brian Bi
+$\mu(n) = \begin{cases}
+0 & \text{$n$ not squarefree} \\
+1 & \text{$n$ squarefree w/ even no. of prime factors} \\
+1 & \text{$n$ squarefree w/ odd no. of prime factors} \\
+\end{cases}$
+Note that $\mu(a) \mu(b) = \mu(ab)$ for $a, b$ relatively prime
+Also $\sum_{d \mid n} \mu(d) = \begin{cases} 1 & \text{if $n = 1$} \\
+0 & \text{otherwise} \end{cases}$
+
+\textbf{M\"obius Inversion}
+If $g(n) = \sum_{d|n} f(d)$ for all $n \ge 1$, then
+$f(n) = \sum_{d|n} \mu(d)g(n/d)$ for all $n \ge 1$.
+
+\subsection{Burnside's Lemma (Text)} % Wesley May and Brian Bi
+The number of orbits of a set $X$ under the group action $G$ equals the average
+number of elements of $X$ fixed by the elements of $G$.
+
+Here's an example. Consider a square of $2n$ times $2n$ cells. How many ways
+are there to color it into $X$ colors, up to rotations and/or reflections?
+Here, the group has only 8 elements (rotations by 0, 90, 180 and 270 degrees,
+reflections over two diagonals, over a vertical line and over a horizontal
+line). Every coloring stays itself after rotating by 0 degrees, so that
+rotation has $X^{4n^2}$ fixed points. Rotation by 180 degrees and reflections
+over a horizonal/vertical line split all cells in pairs that must be of the
+same color for a coloring to be unaffected by such rotation/reflection, thus
+there exist $X^{2n^2}$ such colorings for each of them. Rotations by 90 and 270
+degrees split cells in groups of four, thus yielding $X^{n^2}$ fixed colorings.
+Reflections over diagonals split cells into $2n$ groups of 1 (the diagonal
+itself) and $2n^2-n$ groups of 2 (all remaining cells), thus yielding
+$X^{2n^2-n+2n}=X^{2n^2+n}$ unaffected colorings.  So, the answer is
+$(X^{4n^2}+3X^{2n^2}+2X^{n^2}+2X^{2n^2+n})/8$.
+
+\section{Miscellaneous}
+
+\subsection{Knuth--Morris--Pratt (KMP)} % Stanford
+\lstinputlisting[language=c++]{KMP.cpp}
+
+\subsection{2-SAT} % Brian Bi
+\lstinputlisting[language=c++]{2sat.cpp}
+
+\subsection{Shunting Yard (Pseudocode)} % Wesley May
+\begin{lstlisting}
+// Add '(' to start of expression, and ')' to end.
+O = empty vector of tokens (values or operators)
+S = empty stack of tokens (brackets or operators)
+for each token:
+  if token == value:
+    O.push(token)
+  else if token == '(':
+    S.push(token)
+  else if token == ')':
+    while S.top() != '(':
+      O.push(S.top())
+      S.pop()
+    S.pop()
+  else:
+    // Note: If token is a right-associative operator (^), this should be <=.
+	// priority('(') < priority('+') < priority('*').
+    while priority(S.top()) < priority(token):
+      O.push(S.top())
+      S.pop()
+    S.push(token)
+// Finally, evaluate O as a postfix expression.
+\end{lstlisting}
+
+\subsection{Convex hull trick} % Brian Bi
+\lstinputlisting[language=c++]{chtrick.cpp}
+
+\subsection{Binary search} % Brian Bi
+\lstinputlisting[language=c++]{bsearch.c}
+
+\subsection{Bignums (C++, slow)} % Brian Bi
+\lstinputlisting[language=c++]{bignum.cpp}
+
+\subsection{All nearest smaller values} % Brian Bi
+\lstinputlisting[language=c++]{ansv.cpp}
+
+\subsection{Longest palindromic substring} % Brian Bi
+\lstinputlisting[language=c++]{manacher.cpp}
+\end{multicols*}
+\end{document}
