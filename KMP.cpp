@@ -10,7 +10,8 @@ void buildTable(string& w, VI& t)
 {
   t = VI(w.length());  
   int i = 2, j = 0;
-  t[0] = -1; t[1] = 0;
+  t[0] = -1;
+  if (w.length() > 1) t[1] = 0;
   
   while(i < w.length())
   {
