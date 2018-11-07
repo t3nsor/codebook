@@ -81,4 +81,7 @@ void FFTConvolution(cpx *f, cpx *g, cpx *h, int size)
   for (int i = 0; i < size; i++) H[i] = F[i] * G[i];
   FFT(H, h, 1, size, -1);
   for (int i = 0; i < size; i++) h[i] = h[i] / size;
+  delete [] F;
+  delete [] G;
+  delete [] H;
 }
