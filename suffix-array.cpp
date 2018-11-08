@@ -15,7 +15,7 @@ struct SuffixArray {
   vector<pair<pair<int,int>,int> > M;
 
   SuffixArray(const string &s) : L(s.length()), s(s), P(1, vector<int>(L, 0)), M(L) {
-    for (int i = 0; i < L; i++) P[0][i] = int(s[i]);
+    for (int i = 0; i < L; i++) P[0][i] = L==1 ? i : int(s[i]);
     for (int skip = 1, level = 1; skip < L; skip *= 2, level++) {
       P.push_back(vector<int>(L, 0));
       for (int i = 0; i < L; i++) 
