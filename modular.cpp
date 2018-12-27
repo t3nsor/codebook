@@ -74,7 +74,7 @@ PII chinese_remainder_theorem(int x, int a, int y, int b) {
 PII chinese_remainder_theorem(const VI &x, const VI &a) {
   PII ret = make_pair(a[0], x[0]);
   for (int i = 1; i < x.size(); i++) {
-    ret = chinese_remainder_theorem(ret.first, ret.second, x[i], a[i]);
+    ret = chinese_remainder_theorem(ret.second, ret.first, x[i], a[i]);
     if (ret.second == -1) break;
   }
   return ret;
